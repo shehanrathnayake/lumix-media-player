@@ -13,6 +13,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 
@@ -40,12 +41,9 @@ public class MainSceneController {
 
     public void initialize() {
         browseRoot.setVisible(false);
-//        Platform.runLater(()->{
-//            Font font = Font.loadFont("file:resources/asset/font/Orbitron-Bold.ttf", 13);
-//            lblDisplay.setFont(font);
-//        });
 
     }
+
 
     public void btnAddOnAction(ActionEvent actionEvent) {
         browseRoot.setVisible(true);
@@ -56,16 +54,9 @@ public class MainSceneController {
 
     public void btnPlayOnAction(ActionEvent actionEvent) {
         if (mediaPlayer != null) {
-//            if (btnPlay.getText() == "Play") {
-//                mediaPlayer.play();
-//                btnPlay.setText("Pause");
-//            } else {
-//                mediaPlayer.pause();
-//                btnPlay.setText("Play");
-//            }
-
             mediaPlayer.play();
             btnCloseBrowse.fire();
+
         }
     }
 
@@ -89,15 +80,12 @@ public class MainSceneController {
             txtBrowse.setText(mediaFile.getAbsolutePath());
             Media media = new Media(mediaFile.toURI().toString());
             mediaPlayer = new MediaPlayer(media);
-//            Stage stage = (Stage) root.getScene().getWindow();
-//            String setName = String.format("%s - Lumix Media Player", mediaFile.getName().toString());
-//            stage.setTitle(setName);
 
-//            Font font = Font.loadFont("/asset/font/Orbitron-Bold.ttf", 13);
-//            lblDisplay.setFont(font);
-
-            lblDisplay.setText(mediaFile.getName().toString());
-
+            lblDisplay.setText(String.valueOf(mediaPlayer.getBufferProgressTime()));
+            mediaPlayer.setOnReady(() -> {
+                Duration duration = media.getDuration();
+                lblEndTime.setText(formatDuration(duration));
+            });
 
         } else txtBrowse.clear();
 
@@ -105,5 +93,15 @@ public class MainSceneController {
 
     public void btnCloseBrowseOnAction(ActionEvent actionEvent) {
         browseRoot.setVisible(false);
+    }
+
+    private String formatDuration(Duration duration) {
+        long seconds = (long) duration.toSeconds();
+        long hours = seconds / 3600;
+        seconds %= 3600;
+        long minutes = seconds / 60;
+        seconds %= 60;
+
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 }
