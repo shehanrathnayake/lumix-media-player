@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
@@ -18,6 +20,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.awt.*;
 import java.io.File;
 
 public class MainSceneController {
@@ -42,10 +45,33 @@ public class MainSceneController {
     Duration duration;
 
     public void initialize() {
-        browseRoot.setVisible(false);
 
-        Font font = Font.loadFont(getClass().getResourceAsStream("/asset/font/Orbitron-Regular.ttf"),13);
+        Font font = Font.loadFont(getClass().getResourceAsStream("/asset/font/Orbitron-Regular.ttf"),12);
         lblDisplay.setFont(font);
+
+        Platform.runLater(()->{
+            Image playImage = new Image(getClass().getResourceAsStream("/asset/img/play.png"));
+            ImageView playImageView = new ImageView(playImage);
+            btnPlay.setGraphic(playImageView);
+
+            Image playPreviousImage = new Image(getClass().getResourceAsStream("/asset/img/skip-previous.png"));
+            ImageView playPreviousImageView = new ImageView(playPreviousImage);
+            playPreviousImageView.setFitWidth(16);
+            playPreviousImageView.setFitHeight(16);
+            btnBack.setGraphic(playPreviousImageView);
+
+            Image playNextImage = new Image(getClass().getResourceAsStream("/asset/img/skip-next.png"));
+            ImageView playNextImageView = new ImageView(playNextImage);
+            playNextImageView.setFitWidth(16);
+            playNextImageView.setFitHeight(16);
+            btnForward.setGraphic(playNextImageView);
+
+            Image stopImage = new Image(getClass().getResourceAsStream("/asset/img/stop.png"));
+            ImageView stopImageView = new ImageView(stopImage);
+            stopImageView.setFitWidth(16);
+            stopImageView.setFitHeight(16);
+            btnStop.setGraphic(stopImageView);
+        });
 
     }
 
@@ -74,8 +100,6 @@ public class MainSceneController {
             lblEndTime.setText(formatDuration(duration));
 
         });
-
-
 
     }
 
