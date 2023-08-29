@@ -71,6 +71,12 @@ public class MainSceneController {
             stopImageView.setFitWidth(16);
             stopImageView.setFitHeight(16);
             btnStop.setGraphic(stopImageView);
+
+//            Image playlistImage = new Image(getClass().getResourceAsStream("/asset/img/playlist.png"));
+//            ImageView playlistImageView = new ImageView(playlistImage);
+//            playlistImageView.setFitWidth(10);
+//            playlistImageView.setFitHeight(10);
+//            btnPlaylist.setGraphic(playlistImageView);
         });
 
     }
