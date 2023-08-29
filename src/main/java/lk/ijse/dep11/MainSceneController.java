@@ -44,31 +44,39 @@ public class MainSceneController {
     public void initialize() {
         browseRoot.setVisible(false);
 
-    }
+        Font font = Font.loadFont(getClass().getResourceAsStream("/asset/font/Orbitron-Regular.ttf"),13);
+        lblDisplay.setFont(font);
 
+    }
 
     public void btnAddOnAction(ActionEvent actionEvent) {
 //        browseRoot.setVisible(true);
+        if (mediaPlayer != null) {
+            btnStop.fire();
+        }
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Media Files", "*.mp3", "*.wav"));
         File mediaFile = fileChooser.showOpenDialog(root.getScene().getWindow());
 
+        String filePath = "";
         if (mediaFile != null) {
-            txtBrowse.setText(mediaFile.getAbsolutePath());
-            Media media = new Media(mediaFile.toURI().toString());
-            mediaPlayer = new MediaPlayer(media);
-
+            filePath = mediaFile.toURI().toString();
             lblDisplay.setText(mediaFile.getName());
+        }
+        else filePath = txtBrowse.getText();
 
-            mediaPlayer.setOnReady(() -> {
-                duration = media.getDuration();
-                lblEndTime.setText(formatDuration(duration));
+        txtBrowse.setText(filePath);
+        Media media = new Media(filePath);
+        mediaPlayer = new MediaPlayer(media);
 
-            });
+        mediaPlayer.setOnReady(() -> {
+            duration = media.getDuration();
+            lblEndTime.setText(formatDuration(duration));
+
+        });
 
 
 
-        } else txtBrowse.clear();
     }
 
     public void btnPlaylistOnAction(ActionEvent actionEvent) {
