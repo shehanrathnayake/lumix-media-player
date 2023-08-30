@@ -4,7 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -23,6 +26,11 @@ public class AppInitializer extends Application {
         primaryStage.setScene(mainScene);
         primaryStage.setTitle("Lumix");
         primaryStage.setResizable(false);
+
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        root.setBackground(Background.fill(Color.TRANSPARENT));
+        mainScene.setFill(Color.TRANSPARENT);
+
         primaryStage.centerOnScreen();
         primaryStage.show();
     }

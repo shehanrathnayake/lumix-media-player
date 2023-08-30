@@ -11,6 +11,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
@@ -42,10 +43,13 @@ public class MainSceneController {
     MediaPlayer mediaPlayer;
     Duration duration;
 
+    double xPos;
+    double yPos;
+
     public void initialize() {
 
-        Font font = Font.loadFont(getClass().getResourceAsStream("/asset/font/Orbitron-Regular.ttf"),12);
-        lblDisplay.setFont(font);
+        Font fontDisplay = Font.loadFont(getClass().getResourceAsStream("/asset/font/Orbitron-Regular.ttf"),12);
+        lblDisplay.setFont(fontDisplay);
 
         Platform.runLater(()->{
             Image playImage = new Image(getClass().getResourceAsStream("/asset/img/play.png"));
@@ -83,7 +87,7 @@ public class MainSceneController {
 
         btnPlay.setVisible(true);
         btnPause.setVisible(false);
-        btnPlay.requestFocus();
+        btnAdd.requestFocus();
 
     }
 
@@ -176,6 +180,17 @@ public class MainSceneController {
         });
     }
 
+    public void rootOnMousePressed(MouseEvent e) {
+        xPos = e.getX();
+        yPos = e.getY();
+    }
+
+    public void rootOnMouseDragged(MouseEvent e) {
+        Stage stage = (Stage) root.getScene().getWindow();
+        stage.setX(e.getScreenX()-xPos);
+        stage.setY(e.getScreenY()-yPos);
+    }
+
     private String formatDuration(Duration duration) {
         long seconds = (long) duration.toSeconds();
         long hours = seconds / 3600;
@@ -185,6 +200,5 @@ public class MainSceneController {
 
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
-
 
 }
