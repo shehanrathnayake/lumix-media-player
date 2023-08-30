@@ -36,10 +36,8 @@ public class MainSceneController {
     public Label lblEndTime;
     public Label lblStartTime;
     public Button btnStop;
-    public Button btnBrowse;
-    public Button btnCloseBrowse;
     public TextField txtBrowse;
-    public HBox browseRoot;
+    public Button btnPause;
 
     MediaPlayer mediaPlayer;
     Duration duration;
@@ -53,6 +51,10 @@ public class MainSceneController {
             Image playImage = new Image(getClass().getResourceAsStream("/asset/img/play.png"));
             ImageView playImageView = new ImageView(playImage);
             btnPlay.setGraphic(playImageView);
+
+            Image pauseImage = new Image(getClass().getResourceAsStream("/asset/img/pause.png"));
+            ImageView pauseImageView = new ImageView(pauseImage);
+            btnPause.setGraphic(pauseImageView);
 
             Image playPreviousImage = new Image(getClass().getResourceAsStream("/asset/img/skip-previous.png"));
             ImageView playPreviousImageView = new ImageView(playPreviousImage);
@@ -79,10 +81,13 @@ public class MainSceneController {
 //            btnPlaylist.setGraphic(playlistImageView);
         });
 
+        btnPlay.setVisible(true);
+        btnPause.setVisible(false);
+        btnPlay.requestFocus();
+
     }
 
     public void btnAddOnAction(ActionEvent actionEvent) {
-//        browseRoot.setVisible(true);
         if (mediaPlayer != null) {
             btnStop.fire();
         }
@@ -97,7 +102,6 @@ public class MainSceneController {
         }
         else filePath = txtBrowse.getText();
 
-        txtBrowse.setText(filePath);
         Media media = new Media(filePath);
         mediaPlayer = new MediaPlayer(media);
 
@@ -136,6 +140,12 @@ public class MainSceneController {
             };
 
             new Thread (calculateProgress).start();
+
+            mediaPlayer.setOnPlaying(() -> {
+                btnPause.setVisible(true);
+                btnPlay.setVisible(false);
+                btnPause.requestFocus();
+            });
         }
     }
 
@@ -143,20 +153,27 @@ public class MainSceneController {
     }
 
     public void btnForwardOnAction(ActionEvent actionEvent) {
-        mediaPlayer.pause();
+
     }
 
     public void btnStopOnAction(ActionEvent actionEvent) {
         mediaPlayer.stop();
+
+        mediaPlayer.setOnStopped(()->{
+            btnPause.setVisible(false);
+            btnPlay.setVisible(true);
+            btnPlay.requestFocus();
+        });
     }
 
-    public void btnBrowseOnAction(ActionEvent actionEvent) {
+    public void btnPauseOnAction(ActionEvent actionEvent) {
+        mediaPlayer.pause();
 
-
-    }
-
-    public void btnCloseBrowseOnAction(ActionEvent actionEvent) {
-        browseRoot.setVisible(false);
+        mediaPlayer.setOnPaused(()->{
+            btnPause.setVisible(false);
+            btnPlay.setVisible(true);
+            btnPlay.requestFocus();
+        });
     }
 
     private String formatDuration(Duration duration) {
@@ -168,4 +185,6 @@ public class MainSceneController {
 
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
+
+
 }

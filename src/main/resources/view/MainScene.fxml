@@ -40,6 +40,7 @@
                </font></Label>
             <Button fx:id="btnStop" layoutX="399.0" layoutY="98.0" mnemonicParsing="false" onAction="#btnStopOnAction" AnchorPane.bottomAnchor="10.0" />
             <Label layoutX="6.0" layoutY="3.0" text="Lumix" textFill="WHITE" />
+            <Button fx:id="btnPause" layoutX="306.0" layoutY="98.0" mnemonicParsing="false" onAction="#btnPauseOnAction" AnchorPane.bottomAnchor="10.0" />
          </children>
       </AnchorPane>
    </children>
