@@ -11,11 +11,11 @@
 
 <AnchorPane fx:id="root" onMouseDragged="#rootOnMouseDragged" onMousePressed="#rootOnMousePressed" prefHeight="132.0" prefWidth="650.0" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep11.MainSceneController">
    <children>
-      <AnchorPane fx:id="panelRoot" prefHeight="132.0" prefWidth="650.0" style="-fx-background-color: #28282B; -fx-background-radius: 5;" stylesheets="@../css/progressbar.css" AnchorPane.bottomAnchor="0.0">
+      <AnchorPane fx:id="panelRoot" prefHeight="132.0" prefWidth="650.0" style="-fx-background-color: #28282B; -fx-background-radius: 5; -fx-border-color: black; -fx-border-width: 1; -fx-border-radius: 5;" stylesheets="@../css/progressbar.css" AnchorPane.bottomAnchor="0.0">
          <children>
             <HBox fx:id="labelRoot" alignment="CENTER" layoutX="12.0" layoutY="30.0" prefHeight="38.0" prefWidth="628.0" style="-fx-background-color: #1a1a1a;" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0">
                <children>
-                  <Label fx:id="lblDisplay" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="100.0" prefHeight="43.0" prefWidth="624.0" text="WELCOME" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Label fx:id="lblDisplay" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="100.0" prefHeight="43.0" prefWidth="624.0" text="LOAD MEDIA FILE" textFill="#6dd6e1" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -54,7 +54,7 @@
                   <Button fx:id="btnClose" alignment="CENTER" minHeight="5.0" minWidth="5.0" mnemonicParsing="false" onAction="#btnCloseOnAction" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: #1a1a1a; -fx-border-radius: 5; -fx-background-radius: 5;" />
                </children>
             </HBox>
-            <Slider fx:id="sldVolume" blockIncrement="5.0" layoutX="530.0" layoutY="103.0" onDragDetected="#sldVolumeOnDragDetected" prefHeight="16.0" prefWidth="67.0" value="100.0" AnchorPane.bottomAnchor="10.0" />
+            <Slider fx:id="sldVolume" blockIncrement="5.0" layoutX="530.0" layoutY="103.0" prefHeight="16.0" prefWidth="67.0" value="100.0" AnchorPane.bottomAnchor="10.0" />
             <Label fx:id="lblVolume" alignment="CENTER_RIGHT" layoutX="603.0" layoutY="103.0" text="100%" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
          </children>
       </AnchorPane>

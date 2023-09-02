@@ -268,8 +268,4 @@ public class MainSceneController {
         scene.addEventFilter(KeyEvent.KEY_PRESSED, this::handleKeyPressed);
     }
 
-    public void sldVolumeOnDragDetected(MouseEvent mouseEvent) {
-//        double volume = sldVolume.getValue();
-//        System.out.println(volume);
-    }
 }

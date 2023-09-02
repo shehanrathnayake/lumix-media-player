@@ -1,4 +1,5 @@
 .progress-bar .bar {
+    -fx-accent: #2cb2d3;
     -fx-background-insets: 0;
     -fx-border-insets: 0;
 }
@@ -7,7 +8,7 @@
     -fx-border-color: #ffffff;
 }
 
-#labelRoot, #panelRoot {
+#labelRoot {
     -fx-border-color: #333333;
     -fx-effect: innershadow(gaussian, #333333, 1.0, 1.0, 1.0, 1.0);
 }
