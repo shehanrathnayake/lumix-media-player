@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
@@ -24,11 +26,11 @@
             </HBox>
             <Button fx:id="btnAdd" layoutX="3.0" layoutY="101.0" mnemonicParsing="false" onAction="#btnAddOnAction" style="-fx-background-color: #1a1a1a;" text="+ Add" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
                <font>
-                  <Font size="10.0" />
+                  <Font name="Ubuntu" size="10.0" />
                </font></Button>
             <Button fx:id="btnPlaylist" layoutX="62.0" layoutY="102.0" mnemonicParsing="false" onAction="#btnPlaylistOnAction" prefHeight="20.0" prefWidth="50.0" style="-fx-background-color: #1a1a1a;" text="Playlist" textFill="WHITE" AnchorPane.bottomAnchor="10.0">
                <font>
-                  <Font size="10.0" />
+                  <Font name="Ubuntu" size="10.0" />
                </font></Button>
             <Button fx:id="btnPlay" layoutX="303.0" layoutY="97.0" mnemonicParsing="false" onAction="#btnPlayOnAction" AnchorPane.bottomAnchor="10.0" />
             <Button fx:id="btnBack" layoutX="260.0" layoutY="97.0" mnemonicParsing="false" onAction="#btnBackOnAction" AnchorPane.bottomAnchor="10.0" />
@@ -39,14 +41,17 @@
                </cursor></ProgressBar>
             <Label fx:id="lblEndTime" alignment="CENTER_RIGHT" layoutX="598.0" layoutY="80.0" text="00:00:00" textFill="WHITE" AnchorPane.rightAnchor="10.0">
                <font>
-                  <Font size="11.0" />
+                  <Font name="Ubuntu" size="11.0" />
                </font></Label>
             <Label fx:id="lblStartTime" layoutX="10.0" layoutY="80.0" text="00:00:00" textFill="WHITE" AnchorPane.leftAnchor="10.0">
                <font>
-                  <Font size="11.0" />
+                  <Font name="Ubuntu" size="11.0" />
                </font></Label>
             <Button fx:id="btnStop" layoutX="396.0" layoutY="97.0" mnemonicParsing="false" onAction="#btnStopOnAction" AnchorPane.bottomAnchor="10.0" />
-            <Label layoutX="6.0" layoutY="3.0" text="Lumix" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+            <Label layoutX="27.0" layoutY="11.0" text="Lumix" textFill="WHITE" AnchorPane.topAnchor="6.0">
+               <font>
+                  <Font name="Ubuntu" size="13.0" />
+               </font></Label>
             <Button fx:id="btnPause" layoutX="303.0" layoutY="96.0" mnemonicParsing="false" onAction="#btnPauseOnAction" AnchorPane.bottomAnchor="10.0" />
             <HBox alignment="TOP_RIGHT" layoutX="517.0" layoutY="7.0" prefHeight="16.0" prefWidth="56.0" spacing="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                <children>
@@ -55,7 +60,15 @@
                </children>
             </HBox>
             <Slider fx:id="sldVolume" blockIncrement="5.0" layoutX="530.0" layoutY="103.0" prefHeight="16.0" prefWidth="67.0" value="100.0" AnchorPane.bottomAnchor="10.0" />
-            <Label fx:id="lblVolume" alignment="CENTER_RIGHT" layoutX="603.0" layoutY="103.0" text="100%" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+            <Label fx:id="lblVolume" alignment="CENTER_RIGHT" layoutX="603.0" layoutY="103.0" text="100%" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+               <font>
+                  <Font name="Ubuntu" size="13.0" />
+               </font></Label>
+            <ImageView fitHeight="12.0" fitWidth="11.0" layoutX="12.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="7.0">
+               <image>
+                  <Image url="@../asset/img/lumix-logo.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
