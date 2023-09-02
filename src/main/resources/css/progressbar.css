@@ -2,3 +2,7 @@
     -fx-background-insets: 0;
     -fx-border-insets: 0;
 }
+
+#btnClose:hover, #btnMinimize:hover {
+    -fx-border-color: #ffffff;
+}

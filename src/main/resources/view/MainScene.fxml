@@ -5,12 +5,22 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" onMouseDragged="#rootOnMouseDragged" onMousePressed="#rootOnMousePressed" prefHeight="132.0" prefWidth="650.0" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep11.MainSceneController">
+<AnchorPane fx:id="root" onKeyPressed="#rootOnKeyPressed" onMouseDragged="#rootOnMouseDragged" onMousePressed="#rootOnMousePressed" prefHeight="132.0" prefWidth="650.0" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep11.MainSceneController">
    <children>
       <AnchorPane fx:id="panelRoot" prefHeight="132.0" prefWidth="650.0" style="-fx-background-color: black; -fx-background-radius: 5;" stylesheets="@../css/progressbar.css" AnchorPane.bottomAnchor="0.0">
          <children>
+            <HBox alignment="CENTER" layoutX="11.0" layoutY="30.0" prefHeight="30.0" prefWidth="630.0" style="-fx-background-color: #081107;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+               <children>
+                  <Label fx:id="lblDisplay" alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="629.0" style="-fx-background-color: #081107;" text="WELCOME" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <Button fx:id="btnAdd" layoutX="3.0" layoutY="101.0" mnemonicParsing="false" onAction="#btnAddOnAction" style="-fx-background-color: #12140F;" text="+ Add" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
                <font>
                   <Font size="10.0" />
@@ -20,10 +30,6 @@
                   <Font size="10.0" />
                </font></Button>
             <Button fx:id="btnPlay" layoutX="306.0" layoutY="98.0" mnemonicParsing="false" onAction="#btnPlayOnAction" AnchorPane.bottomAnchor="10.0" />
-            <Label fx:id="lblDisplay" alignment="CENTER" layoutY="32.0" prefHeight="24.0" prefWidth="655.0" style="-fx-background-color: #081107;" text="WELCOME" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
-               <font>
-                  <Font size="12.0" />
-               </font></Label>
             <Button fx:id="btnBack" layoutX="263.0" layoutY="98.0" mnemonicParsing="false" onAction="#btnBackOnAction" AnchorPane.bottomAnchor="10.0" />
             <Button fx:id="btnForward" layoutX="357.0" layoutY="98.0" mnemonicParsing="false" onAction="#btnForwardOnAction" AnchorPane.bottomAnchor="10.0" />
             <ProgressBar fx:id="pbTimeline" layoutX="6.0" layoutY="72.0" prefHeight="2.0" prefWidth="630.0" progress="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
@@ -41,6 +47,12 @@
             <Button fx:id="btnStop" layoutX="399.0" layoutY="98.0" mnemonicParsing="false" onAction="#btnStopOnAction" AnchorPane.bottomAnchor="10.0" />
             <Label layoutX="6.0" layoutY="3.0" text="Lumix" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
             <Button fx:id="btnPause" layoutX="306.0" layoutY="98.0" mnemonicParsing="false" onAction="#btnPauseOnAction" AnchorPane.bottomAnchor="10.0" />
+            <HBox alignment="TOP_RIGHT" layoutX="517.0" layoutY="7.0" prefHeight="16.0" prefWidth="56.0" spacing="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+               <children>
+                  <Button fx:id="btnMinimize" minHeight="5.0" minWidth="5.0" mnemonicParsing="false" onAction="#btnMinimizeOnAction" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: #12140F; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                  <Button fx:id="btnClose" alignment="CENTER" minHeight="5.0" minWidth="5.0" mnemonicParsing="false" onAction="#btnCloseOnAction" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: #12140F; -fx-border-radius: 5; -fx-background-radius: 5;" />
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </children>

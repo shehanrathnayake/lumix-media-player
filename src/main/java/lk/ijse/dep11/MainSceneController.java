@@ -2,26 +2,30 @@ package lk.ijse.dep11;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.awt.*;
 import java.io.File;
 
 public class MainSceneController {
@@ -37,8 +41,9 @@ public class MainSceneController {
     public Label lblEndTime;
     public Label lblStartTime;
     public Button btnStop;
-    public TextField txtBrowse;
     public Button btnPause;
+    public Button btnMinimize;
+    public Button btnClose;
 
     MediaPlayer mediaPlayer;
     Duration duration;
@@ -78,11 +83,17 @@ public class MainSceneController {
             stopImageView.setFitHeight(16);
             btnStop.setGraphic(stopImageView);
 
-//            Image playlistImage = new Image(getClass().getResourceAsStream("/asset/img/playlist.png"));
-//            ImageView playlistImageView = new ImageView(playlistImage);
-//            playlistImageView.setFitWidth(10);
-//            playlistImageView.setFitHeight(10);
-//            btnPlaylist.setGraphic(playlistImageView);
+            Image closeImage = new Image(getClass().getResourceAsStream("/asset/img/close.png"));
+            ImageView closeImageView = new ImageView(closeImage);
+            closeImageView.setFitWidth(10);
+            closeImageView.setFitHeight(10);
+            btnClose.setGraphic(closeImageView);
+
+            Image minimizeImage = new Image(getClass().getResourceAsStream("/asset/img/minimize.png"));
+            ImageView minimizeImageView = new ImageView(minimizeImage);
+            minimizeImageView.setFitWidth(10);
+            minimizeImageView.setFitHeight(10);
+            btnMinimize.setGraphic(minimizeImageView);
         });
 
         btnPlay.setVisible(true);
@@ -104,7 +115,7 @@ public class MainSceneController {
             filePath = mediaFile.toURI().toString();
             lblDisplay.setText(mediaFile.getName());
         }
-        else filePath = txtBrowse.getText();
+        else filePath = lblDisplay.getText();
 
         Media media = new Media(filePath);
         mediaPlayer = new MediaPlayer(media);
@@ -112,7 +123,6 @@ public class MainSceneController {
         mediaPlayer.setOnReady(() -> {
             duration = media.getDuration();
             lblEndTime.setText(formatDuration(duration));
-
         });
 
     }
@@ -138,7 +148,6 @@ public class MainSceneController {
                     }));
                     timeline.setCycleCount(Timeline.INDEFINITE);
                     timeline.play();
-
                     return null;
                 }
             };
@@ -191,6 +200,20 @@ public class MainSceneController {
         stage.setY(e.getScreenY()-yPos);
     }
 
+    public void btnMinimizeOnAction(ActionEvent actionEvent) {
+        Stage stage = (Stage) root.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    public void btnCloseOnAction(ActionEvent actionEvent) {
+        System.exit(0);
+    }
+
+    public void rootOnKeyPressed(KeyEvent keyEvent) {
+//        if (keyEvent.getCode() == KeyCode.LEFT) if (mediaPlayer != null) mediaPlayer.seek(mediaPlayer.getCurrentTime().add(Duration.seconds(-5)));
+//        else if (keyEvent.getCode() == KeyCode.RIGHT) if (mediaPlayer != null) mediaPlayer.seek(mediaPlayer.getCurrentTime().add(Duration.seconds(5)));
+    }
+
     private String formatDuration(Duration duration) {
         long seconds = (long) duration.toSeconds();
         long hours = seconds / 3600;
@@ -199,6 +222,40 @@ public class MainSceneController {
         seconds %= 60;
 
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+    }
+
+    private void handleKeyPressed (KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.LEFT) {
+            if (mediaPlayer != null) {
+                mediaPlayer.seek(mediaPlayer.getCurrentTime().add(Duration.seconds(-5)));
+//                mediaPlayer.setOnPlaying(()->{btnPlay.requestFocus();});
+//                mediaPlayer.setOnPaused(()->{btnPause.requestFocus();});
+                btnPlay.requestFocus();
+            }
+        }
+        if (keyEvent.getCode() == KeyCode.RIGHT) {
+            if (mediaPlayer != null) {
+                mediaPlayer.seek(mediaPlayer.getCurrentTime().add(Duration.seconds(5)));
+//                mediaPlayer.setOnPlaying(()->{btnPlay.requestFocus();});
+//                mediaPlayer.setOnPaused(()->{btnPause.requestFocus();});
+                btnPlay.requestFocus();
+            }
+        }
+        if (keyEvent.getCode() == KeyCode.SPACE) {
+            btnPlay.requestFocus();
+            mediaPlayer.setOnPlaying(()->{
+                btnPause.requestFocus();
+                btnPause.fire();
+            });
+            mediaPlayer.setOnPaused(()->{
+//                btnPlay.requestFocus();
+                btnPlay.fire();
+            });
+        }
+    }
+
+    public void setRootScene(Scene scene) {
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, this::handleKeyPressed);
     }
 
 }

@@ -2,6 +2,7 @@ package lk.ijse.dep11;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -20,8 +21,13 @@ public class AppInitializer extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        AnchorPane root = FXMLLoader.load(getClass().getResource("/view/MainScene.fxml"));
+//        AnchorPane root = FXMLLoader.load(getClass().getResource("/view/MainScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainScene.fxml"));
+        AnchorPane root = loader.load();
         Scene mainScene = new Scene(root);
+
+        MainSceneController controller = loader.getController();
+        controller.setRootScene(mainScene);
 
         primaryStage.setScene(mainScene);
         primaryStage.setTitle("Lumix");
