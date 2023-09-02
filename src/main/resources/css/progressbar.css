@@ -6,3 +6,9 @@
 #btnClose:hover, #btnMinimize:hover {
     -fx-border-color: #ffffff;
 }
+
+#labelRoot, #panelRoot {
+    -fx-border-color: #333333;
+    -fx-effect: innershadow(gaussian, #333333, 2.0, 1.0, 1.0, 1.0);
+}
+

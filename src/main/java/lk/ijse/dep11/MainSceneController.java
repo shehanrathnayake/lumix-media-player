@@ -44,6 +44,7 @@ public class MainSceneController {
     public Button btnPause;
     public Button btnMinimize;
     public Button btnClose;
+    public HBox labelRoot;
 
     MediaPlayer mediaPlayer;
     Duration duration;
@@ -53,8 +54,11 @@ public class MainSceneController {
 
     public void initialize() {
 
-        Font fontDisplay = Font.loadFont(getClass().getResourceAsStream("/asset/font/Orbitron-Regular.ttf"),12);
+        Font fontDisplay = Font.loadFont(getClass().getResourceAsStream("/asset/font/Digital Display.ttf"),22);
         lblDisplay.setFont(fontDisplay);
+//        // Increase letter spacing for lblDisplay
+//        lblDisplay.setStyle("-fx-letter-spacing: 100px;");
+
 
         Platform.runLater(()->{
             Image playImage = new Image(getClass().getResourceAsStream("/asset/img/play.png"));
@@ -252,6 +256,7 @@ public class MainSceneController {
                 btnPlay.fire();
             });
         }
+
     }
 
     public void setRootScene(Scene scene) {
