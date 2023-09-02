@@ -213,9 +213,9 @@ public class MainSceneController {
         System.exit(0);
     }
 
-    public void rootOnKeyPressed(KeyEvent keyEvent) {
+    public void panelRootOnKeyPressed(KeyEvent keyEvent) {
 //        if (keyEvent.getCode() == KeyCode.LEFT) if (mediaPlayer != null) mediaPlayer.seek(mediaPlayer.getCurrentTime().add(Duration.seconds(-5)));
-//        else if (keyEvent.getCode() == KeyCode.RIGHT) if (mediaPlayer != null) mediaPlayer.seek(mediaPlayer.getCurrentTime().add(Duration.seconds(5)));
+//        if (keyEvent.getCode() == KeyCode.RIGHT) if (mediaPlayer != null) mediaPlayer.seek(mediaPlayer.getCurrentTime().add(Duration.seconds(5)));
     }
 
     private String formatDuration(Duration duration) {
@@ -232,35 +232,33 @@ public class MainSceneController {
         if (keyEvent.getCode() == KeyCode.LEFT) {
             if (mediaPlayer != null) {
                 mediaPlayer.seek(mediaPlayer.getCurrentTime().add(Duration.seconds(-5)));
-//                mediaPlayer.setOnPlaying(()->{btnPlay.requestFocus();});
-//                mediaPlayer.setOnPaused(()->{btnPause.requestFocus();});
-                btnPlay.requestFocus();
             }
         }
         if (keyEvent.getCode() == KeyCode.RIGHT) {
             if (mediaPlayer != null) {
                 mediaPlayer.seek(mediaPlayer.getCurrentTime().add(Duration.seconds(5)));
-//                mediaPlayer.setOnPlaying(()->{btnPlay.requestFocus();});
-//                mediaPlayer.setOnPaused(()->{btnPause.requestFocus();});
-                btnPlay.requestFocus();
             }
         }
-        if (keyEvent.getCode() == KeyCode.SPACE) {
-            btnPlay.requestFocus();
-            mediaPlayer.setOnPlaying(()->{
-                btnPause.requestFocus();
-                btnPause.fire();
-            });
-            mediaPlayer.setOnPaused(()->{
-//                btnPlay.requestFocus();
-                btnPlay.fire();
-            });
-        }
+        if ((keyEvent.getCode() == KeyCode.SPACE) || (keyEvent.getCode() == KeyCode.ENTER)) {
+            if (mediaPlayer != null) {
+                MediaPlayer.Status status = mediaPlayer.getStatus();
+                if (status == MediaPlayer.Status.PLAYING) {
+                    btnPause.fire();
+                }
+                if (status == MediaPlayer.Status.PAUSED) {
+                    btnPlay.fire();
+                }
+            } else {
+                btnAdd.fire();
+            }
 
+        }
     }
 
     public void setRootScene(Scene scene) {
         scene.addEventFilter(KeyEvent.KEY_PRESSED, this::handleKeyPressed);
     }
 
+    public void rootOnKeyPressed(KeyEvent keyEvent) {
+    }
 }

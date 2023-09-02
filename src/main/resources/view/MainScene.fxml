@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="root" onKeyPressed="#rootOnKeyPressed" onMouseDragged="#rootOnMouseDragged" onMousePressed="#rootOnMousePressed" prefHeight="132.0" prefWidth="650.0" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep11.MainSceneController">
    <children>
-      <AnchorPane fx:id="panelRoot" prefHeight="132.0" prefWidth="650.0" style="-fx-background-color: #28282B; -fx-background-radius: 5;" stylesheets="@../css/progressbar.css" AnchorPane.bottomAnchor="0.0">
+      <AnchorPane fx:id="panelRoot" onKeyPressed="#panelRootOnKeyPressed" prefHeight="132.0" prefWidth="650.0" style="-fx-background-color: #28282B; -fx-background-radius: 5;" stylesheets="@../css/progressbar.css" AnchorPane.bottomAnchor="0.0">
          <children>
             <HBox fx:id="labelRoot" alignment="CENTER" layoutX="11.0" layoutY="30.0" prefHeight="33.0" prefWidth="630.0" style="-fx-background-color: #1a1a1a;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                <children>
