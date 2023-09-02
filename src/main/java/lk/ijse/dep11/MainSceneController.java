@@ -6,6 +6,8 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -14,16 +16,21 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.io.IOException;
 
 public class MainSceneController {
     public AnchorPane root;
@@ -44,6 +51,7 @@ public class MainSceneController {
     public HBox labelRoot;
     public Slider sldVolume;
     public Label lblVolume;
+    public Button btnAbout;
 
     MediaPlayer mediaPlayer;
     Duration duration;
@@ -268,4 +276,20 @@ public class MainSceneController {
         scene.addEventFilter(KeyEvent.KEY_PRESSED, this::handleKeyPressed);
     }
 
+    public void btnAboutOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane root = FXMLLoader.load(getClass().getResource("/view/AboutScene.fxml"));
+        Scene aboutScene = new Scene(root);
+
+        Stage aboutStage = new Stage();
+        aboutStage.setScene(aboutScene);
+
+        aboutStage.initModality(Modality.APPLICATION_MODAL);
+        aboutStage.initStyle(StageStyle.TRANSPARENT);
+        root.setBackground(Background.fill(Color.TRANSPARENT));
+        aboutScene.setFill(Color.TRANSPARENT);
+
+        aboutStage.centerOnScreen();
+        aboutStage.setResizable(false);
+        aboutStage.show();
+    }
 }

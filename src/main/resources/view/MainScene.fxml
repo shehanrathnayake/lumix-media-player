@@ -17,7 +17,7 @@
          <children>
             <HBox fx:id="labelRoot" alignment="CENTER" layoutX="12.0" layoutY="30.0" prefHeight="38.0" prefWidth="628.0" style="-fx-background-color: #1a1a1a;" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0">
                <children>
-                  <Label fx:id="lblDisplay" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="100.0" prefHeight="43.0" prefWidth="624.0" text="LOAD MEDIA FILE" textFill="#6dd6e1" HBox.hgrow="ALWAYS">
+                  <Label fx:id="lblDisplay" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="100.0" prefHeight="43.0" prefWidth="624.0" text="INSERT MEDIA FILE" textFill="#6dd6e1" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -28,7 +28,7 @@
                <font>
                   <Font name="Ubuntu" size="10.0" />
                </font></Button>
-            <Button fx:id="btnPlaylist" layoutX="62.0" layoutY="102.0" mnemonicParsing="false" onAction="#btnPlaylistOnAction" prefHeight="20.0" prefWidth="50.0" style="-fx-background-color: #1a1a1a;" text="Playlist" textFill="WHITE" AnchorPane.bottomAnchor="10.0">
+            <Button fx:id="btnPlaylist" layoutX="58.0" layoutY="98.0" mnemonicParsing="false" onAction="#btnPlaylistOnAction" prefHeight="20.0" prefWidth="50.0" style="-fx-background-color: #1a1a1a;" text="Playlist" textFill="WHITE" AnchorPane.bottomAnchor="10.0">
                <font>
                   <Font name="Ubuntu" size="10.0" />
                </font></Button>
@@ -69,6 +69,11 @@
                   <Image url="@../asset/img/lumix-logo.png" />
                </image>
             </ImageView>
+            <Button fx:id="btnAbout" layoutX="115.0" layoutY="94.0" mnemonicParsing="false" onAction="#btnAboutOnAction" prefHeight="20.0" prefWidth="43.0" style="-fx-background-color: #1a1a1a;" text="About" textFill="WHITE" AnchorPane.bottomAnchor="10.0">
+               <font>
+                  <Font name="Ubuntu" size="10.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>
