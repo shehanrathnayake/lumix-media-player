@@ -53,7 +53,7 @@ public class MainSceneController {
 
     public void initialize() {
 
-        Font fontDisplay = Font.loadFont(getClass().getResourceAsStream("/asset/font/Digital Display.ttf"),22);
+        Font fontDisplay = Font.loadFont(getClass().getResourceAsStream("/asset/font/FrozenCrystal-Z34x.otf"),22);
         lblDisplay.setFont(fontDisplay);
 
         Platform.runLater(()->{
@@ -254,6 +254,14 @@ public class MainSceneController {
                 btnAdd.fire();
             }
         }
+        if (keyEvent.getCode() == KeyCode.UP) {
+            if (mediaPlayer != null) sldVolume.setValue(sldVolume.getValue() + 5 - (sldVolume.getValue() % 5));
+        }
+
+        if (keyEvent.getCode() == KeyCode.DOWN) {
+            if (mediaPlayer != null) sldVolume.setValue(sldVolume.getValue() - ((sldVolume.getValue() % 5 == 0) ? 5 : sldVolume.getValue() % 5));
+        }
+
     }
 
     public void setRootScene(Scene scene) {
