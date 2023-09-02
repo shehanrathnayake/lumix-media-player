@@ -7,10 +7,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -45,6 +42,8 @@ public class MainSceneController {
     public Button btnMinimize;
     public Button btnClose;
     public HBox labelRoot;
+    public Slider sldVolume;
+    public Label lblVolume;
 
     MediaPlayer mediaPlayer;
     Duration duration;
@@ -56,9 +55,6 @@ public class MainSceneController {
 
         Font fontDisplay = Font.loadFont(getClass().getResourceAsStream("/asset/font/Digital Display.ttf"),22);
         lblDisplay.setFont(fontDisplay);
-//        // Increase letter spacing for lblDisplay
-//        lblDisplay.setStyle("-fx-letter-spacing: 100px;");
-
 
         Platform.runLater(()->{
             Image playImage = new Image(getClass().getResourceAsStream("/asset/img/play.png"));
@@ -104,6 +100,14 @@ public class MainSceneController {
         btnPause.setVisible(false);
         btnAdd.requestFocus();
 
+        sldVolume.valueProperty().addListener(e->{
+            double volume = sldVolume.getValue();
+            System.out.println(volume);
+
+            mediaPlayer.setVolume(volume/100);
+            System.out.println(mediaPlayer.getVolume());
+            lblVolume.setText(String.format("%.0f",volume).concat("%"));
+        });
     }
 
     public void btnAddOnAction(ActionEvent actionEvent) {
@@ -128,7 +132,6 @@ public class MainSceneController {
             duration = media.getDuration();
             lblEndTime.setText(formatDuration(duration));
         });
-
     }
 
     public void btnPlaylistOnAction(ActionEvent actionEvent) {
@@ -140,6 +143,10 @@ public class MainSceneController {
                 @Override
                 protected Void call() throws Exception {
                     mediaPlayer.play();
+
+                    System.out.println(mediaPlayer.getVolume());
+                    sldVolume.setValue(mediaPlayer.getVolume() * 100);
+
                     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
                         Duration currentTime = mediaPlayer.getCurrentTime();
                         double progress = currentTime.toMillis()/ mediaPlayer.getTotalDuration().toMillis();
@@ -213,11 +220,6 @@ public class MainSceneController {
         System.exit(0);
     }
 
-    public void panelRootOnKeyPressed(KeyEvent keyEvent) {
-//        if (keyEvent.getCode() == KeyCode.LEFT) if (mediaPlayer != null) mediaPlayer.seek(mediaPlayer.getCurrentTime().add(Duration.seconds(-5)));
-//        if (keyEvent.getCode() == KeyCode.RIGHT) if (mediaPlayer != null) mediaPlayer.seek(mediaPlayer.getCurrentTime().add(Duration.seconds(5)));
-    }
-
     private String formatDuration(Duration duration) {
         long seconds = (long) duration.toSeconds();
         long hours = seconds / 3600;
@@ -251,7 +253,6 @@ public class MainSceneController {
             } else {
                 btnAdd.fire();
             }
-
         }
     }
 
@@ -259,6 +260,8 @@ public class MainSceneController {
         scene.addEventFilter(KeyEvent.KEY_PRESSED, this::handleKeyPressed);
     }
 
-    public void rootOnKeyPressed(KeyEvent keyEvent) {
+    public void sldVolumeOnDragDetected(MouseEvent mouseEvent) {
+//        double volume = sldVolume.getValue();
+//        System.out.println(volume);
     }
 }

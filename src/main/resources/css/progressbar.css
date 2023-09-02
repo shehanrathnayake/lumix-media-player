@@ -9,6 +9,6 @@
 
 #labelRoot, #panelRoot {
     -fx-border-color: #333333;
-    -fx-effect: innershadow(gaussian, #333333, 2.0, 1.0, 1.0, 1.0);
+    -fx-effect: innershadow(gaussian, #333333, 1.0, 1.0, 1.0, 1.0);
 }
 
