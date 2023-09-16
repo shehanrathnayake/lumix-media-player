@@ -28,7 +28,7 @@
                <font>
                   <Font name="Ubuntu" size="10.0" />
                </font></Button>
-            <Button fx:id="btnPlaylist" layoutX="58.0" layoutY="98.0" mnemonicParsing="false" onAction="#btnPlaylistOnAction" prefHeight="20.0" prefWidth="50.0" style="-fx-background-color: #1a1a1a;" text="Playlist" textFill="WHITE" AnchorPane.bottomAnchor="10.0">
+            <Button fx:id="btnPlaylist" layoutX="58.0" layoutY="98.0" mnemonicParsing="false" onAction="#btnPlaylistOnAction" prefHeight="2.0" prefWidth="50.0" style="-fx-background-color: #1a1a1a;" text="Playlist" textFill="WHITE" AnchorPane.bottomAnchor="10.0">
                <font>
                   <Font name="Ubuntu" size="10.0" />
                </font></Button>
@@ -69,7 +69,7 @@
                   <Image url="@../asset/img/lumix-logo.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnAbout" layoutX="115.0" layoutY="94.0" mnemonicParsing="false" onAction="#btnAboutOnAction" prefHeight="20.0" prefWidth="43.0" style="-fx-background-color: #1a1a1a;" text="About" textFill="WHITE" AnchorPane.bottomAnchor="10.0">
+            <Button fx:id="btnAbout" layoutX="114.0" layoutY="102.0" mnemonicParsing="false" onAction="#btnAboutOnAction" prefHeight="2.0" prefWidth="43.0" style="-fx-background-color: #1a1a1a;" text="About" textFill="WHITE" AnchorPane.bottomAnchor="10.0">
                <font>
                   <Font name="Ubuntu" size="10.0" />
                </font>
