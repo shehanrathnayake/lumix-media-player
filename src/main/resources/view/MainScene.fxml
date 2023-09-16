@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -9,9 +10,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" onMouseDragged="#rootOnMouseDragged" onMousePressed="#rootOnMousePressed" prefHeight="132.0" prefWidth="650.0" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep11.MainSceneController">
+<AnchorPane fx:id="root" maxHeight="455.0" minHeight="132.0" onMouseDragged="#rootOnMouseDragged" onMousePressed="#rootOnMousePressed" prefHeight="455.0" prefWidth="650.0" style="-fx-background-radius: 5;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep11.MainSceneController">
    <children>
       <AnchorPane fx:id="panelRoot" prefHeight="132.0" prefWidth="650.0" style="-fx-background-color: #28282B; -fx-background-radius: 5; -fx-border-color: black; -fx-border-width: 1; -fx-border-radius: 5;" stylesheets="@../css/progressbar.css" AnchorPane.bottomAnchor="0.0">
          <children>
@@ -48,10 +50,6 @@
                   <Font name="Ubuntu" size="11.0" />
                </font></Label>
             <Button fx:id="btnStop" layoutX="396.0" layoutY="97.0" mnemonicParsing="false" onAction="#btnStopOnAction" AnchorPane.bottomAnchor="10.0" />
-            <Label layoutX="27.0" layoutY="11.0" text="Lumix" textFill="WHITE" AnchorPane.topAnchor="6.0">
-               <font>
-                  <Font name="Ubuntu" size="13.0" />
-               </font></Label>
             <Button fx:id="btnPause" layoutX="303.0" layoutY="96.0" mnemonicParsing="false" onAction="#btnPauseOnAction" AnchorPane.bottomAnchor="10.0" />
             <HBox alignment="TOP_RIGHT" layoutX="517.0" layoutY="7.0" prefHeight="16.0" prefWidth="56.0" spacing="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                <children>
@@ -69,11 +67,96 @@
                   <Image url="@../asset/img/lumix-logo.png" />
                </image>
             </ImageView>
+            <Label layoutX="27.0" layoutY="11.0" text="Lumix" textFill="WHITE" AnchorPane.topAnchor="6.0">
+               <font>
+                  <Font name="Ubuntu" size="13.0" />
+               </font></Label>
             <Button fx:id="btnAbout" layoutX="114.0" layoutY="102.0" mnemonicParsing="false" onAction="#btnAboutOnAction" prefHeight="2.0" prefWidth="43.0" style="-fx-background-color: #1a1a1a;" text="About" textFill="WHITE" AnchorPane.bottomAnchor="10.0">
                <font>
                   <Font name="Ubuntu" size="10.0" />
                </font>
             </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="panelVideoRoot" layoutX="3.0" layoutY="33.0" prefHeight="455.0" prefWidth="650.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="panelBoardRoot" layoutY="399.0" prefHeight="64.0" prefWidth="650.0" style="-fx-background-color: #282828;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Button fx:id="btnAboutVideo" layoutX="114.0" layoutY="35.0" mnemonicParsing="false" onAction="#btnAboutVideoOnAction" prefHeight="2.0" prefWidth="43.0" style="-fx-background-color: #1a1a1a;" text="About" textFill="WHITE" AnchorPane.bottomAnchor="10.0">
+                     <font>
+                        <Font name="Ubuntu" size="10.0" />
+                     </font>
+                  </Button>
+                  <ProgressBar fx:id="pbTimelineVideo" layoutX="10.0" layoutY="7.0" prefHeight="2.0" prefWidth="630.0" progress="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ProgressBar>
+                  <Label fx:id="lblStartTimeVideo" layoutX="11.0" layoutY="12.0" text="00:00:00" textFill="WHITE" AnchorPane.leftAnchor="11.0">
+                     <font>
+                        <Font name="Ubuntu" size="11.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblEndTimeVideo" alignment="CENTER_RIGHT" layoutX="596.0" layoutY="12.0" text="00:00:00" textFill="WHITE" AnchorPane.rightAnchor="11.0">
+                     <font>
+                        <Font name="Ubuntu" size="11.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnAddVideo" layoutX="12.0" layoutY="32.0" mnemonicParsing="false" onAction="#btnAddVideoOnAction" style="-fx-background-color: #1a1a1a;" text="+ Add" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                     <font>
+                        <Font name="Ubuntu" size="10.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnPlaylistVideo" layoutX="58.0" layoutY="35.0" mnemonicParsing="false" onAction="#btnPlaylistVideoOnAction" prefHeight="2.0" prefWidth="50.0" style="-fx-background-color: #1a1a1a;" text="Playlist" textFill="WHITE" AnchorPane.bottomAnchor="10.0">
+                     <font>
+                        <Font name="Ubuntu" size="10.0" />
+                     </font>
+                  </Button>
+                  <Slider fx:id="sldVolumeVideo" blockIncrement="5.0" layoutX="530.0" layoutY="37.0" prefHeight="16.0" prefWidth="67.0" value="100.0" AnchorPane.bottomAnchor="11.0" />
+                  <Label fx:id="lblVolumeVideo" alignment="CENTER_RIGHT" layoutX="606.0" layoutY="37.0" text="100%" textFill="WHITE" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="11.0">
+                     <font>
+                        <Font name="Ubuntu" size="13.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" layoutX="258.0" layoutY="23.0" prefHeight="30.0" prefWidth="135.0" spacing="10.0" AnchorPane.bottomAnchor="10.0">
+                     <children>
+                        <Button fx:id="btnBackVideo" mnemonicParsing="false" onAction="#btnBackVideoOnAction" />
+                        <AnchorPane prefHeight="30.0" prefWidth="22.0">
+                           <children>
+                              <Button fx:id="btnPauseVideo" layoutX="3.0" layoutY="3.0" mnemonicParsing="false" onAction="#btnPauseVideoOnAction" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
+                              <Button fx:id="btnPlayVideo" layoutX="3.0" layoutY="3.0" mnemonicParsing="false" onAction="#btnPlayVideoOnAction" prefWidth="11.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
+                           </children>
+                        </AnchorPane>
+                        <Button fx:id="btnForwardVideo" mnemonicParsing="false" onAction="#btnForwardVideoOnAction" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+            <MediaView fx:id="mvView" fitHeight="366.0" fitWidth="650.0" layoutX="7.0" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </MediaView>
+            <AnchorPane prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #282828;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox alignment="TOP_RIGHT" prefHeight="16.0" prefWidth="56.0" spacing="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                     <children>
+                        <Button fx:id="btnMinimize1" minHeight="5.0" minWidth="5.0" mnemonicParsing="false" onAction="#btnMinimizeOnAction" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: #1a1a1a; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                        <Button fx:id="btnClose1" alignment="CENTER" minHeight="5.0" minWidth="5.0" mnemonicParsing="false" onAction="#btnCloseOnAction" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: #1a1a1a; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                     </children>
+                  </HBox>
+                  <ImageView fitHeight="12.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="7.0">
+                     <image>
+                        <Image url="@../asset/img/lumix-logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="27.0" layoutY="6.0" text="Lumix" textFill="WHITE" AnchorPane.topAnchor="6.0">
+                     <font>
+                        <Font name="Ubuntu" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
